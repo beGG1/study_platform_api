@@ -1,4 +1,4 @@
-module github.com/beGG1/study_program_api
+module github.com/beGG1/study_platform_api
 
 go 1.23.0
 

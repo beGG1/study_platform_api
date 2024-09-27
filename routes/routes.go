@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/beGG1/study_program_api/handlers"
+	"github.com/beGG1/study_platform_api/handlers"
 	"github.com/gin-gonic/gin"
 )
 

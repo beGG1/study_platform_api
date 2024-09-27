@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/beGG1/study_program_api/routes"
+	"github.com/beGG1/study_platform_api/routes"
 	"github.com/gin-gonic/gin"
 )
 
