@@ -9,6 +9,7 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
+      POSTGRES_DB: platform
     volumes:
       - local_pgdata:/var/lib/postgresql/data
   pgadmin:
@@ -16,7 +17,7 @@ services:
     container_name: pg_admin
     # restart: always
     ports:
-      - "8888:800"
+      - "8888:80"
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
@@ -25,31 +26,31 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     
-  gitlab:
-    image: 'gitlab/gitlab-ce:latest'
-    restart: always
-    hostname: 'localhost'
-    container_name: gitlab-ce
-    environment:
-      GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://localhost'
-    ports:
-      - '8080:80'
-      - '8443:443'
-    volumes:
-      - '/gitlab/config:/etc/gitlab'
-      - '/gitlab/logs:/var/log/gitlab'
-      - '/gitlab/data:/var/opt/gitlab'
+  # gitlab:
+  #   image: 'gitlab/gitlab-ce:latest'
+  #   restart: always
+  #   hostname: 'localhost'
+  #   container_name: gitlab-ce
+  #   environment:
+  #     GITLAB_OMNIBUS_CONFIG: |
+  #       external_url 'http://localhost'
+  #   ports:
+  #     - '8080:80'
+  #     - '8443:443'
+  #   volumes:
+  #     - '/gitlab/config:/etc/gitlab'
+  #     - '/gitlab/logs:/var/log/gitlab'
+  #     - '/gitlab/data:/var/opt/gitlab'
 
-  gitlab-runner:
-    image: gitlab/gitlab-runner:alpine
-    container_name: gitlab-runner    
-    restart: always
-    depends_on:
-      - gitlab
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - '/gitlab/gitlab-runner:/etc/gitlab-runner'
+  # gitlab-runner:
+  #   image: gitlab/gitlab-runner:alpine
+  #   container_name: gitlab-runner    
+  #   restart: always
+  #   depends_on:
+  #     - gitlab
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - '/gitlab/gitlab-runner:/etc/gitlab-runner'
 
 
 volumes:
